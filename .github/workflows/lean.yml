@@ -1,0 +1,22 @@
+name: Lean CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: true
+          test: false
+      - name: Print axioms
+        run: |
+          source ~/.elan/env
+          lake env lean --run -e '#print axioms HeightDuplication.dup_bezout_a7'
+          lake env lean --run -e '#print axioms SexticJacobian.sextic_fourfold_hodge_numbers'
