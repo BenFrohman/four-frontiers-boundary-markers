@@ -16,6 +16,14 @@ jobs:
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
+      - name: Cache Mathlib and Lake packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            .lake
+            ~/.cache/mathlib
+          key: ${{ runner.os }}-lake-${{ hashFiles('lakefile.toml', 'lean-toolchain', 'lake-manifest.json') }}
+
       - name: Fetch Mathlib cache and build all modules
         run: |
           lake exe cache get
@@ -23,15 +31,14 @@ jobs:
 
       - name: Verify zero sorry / admit / custom axioms
         run: |
-          if grep -rnE '\b(sorry|admit|axiom)\b' Fourfrontiers/; then
+          if grep -rnE '\b(sorry|admit|axiom)\b' --include='*.lean' .; then
             echo "Found forbidden sorry, admit, or custom axiom"
             exit 1
           fi
 
-      - name: Check #print axioms on torsion_trivial and P0_infinite_order
+      - name: Print axioms on key theorems
         run: |
           lake env lean -c /dev/null --stdin << 'EOF'
-          import Fourfrontiers.Torsion3936b1Complete
-          #print axioms Fourfrontiers.Curve3936b1.torsion_trivial
-          #print axioms Fourfrontiers.Curve3936b1.P0_infinite_order
+          import FrontiersArchitecture
+          #print axioms FrontiersArchitecture.master_frontier_reduction
           EOF
