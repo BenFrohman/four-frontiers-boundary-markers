@@ -6,14 +6,14 @@ Authors: Benjamin Stanley Frohman
 import Fourfrontiers.SexticJacobian
 import Fourfrontiers.IncidenceDimension
 import Fourfrontiers.HeightDuplication
+import Fourfrontiers.Curve3936b1TrivialTorsion
 
 /-!
 # Four Frontiers Boundary Markers
 
-Existing modules:
-- SexticJacobian: Hodge numbers via Jacobian ring
-- IncidenceDimension: incidence dimension arithmetic
-- HeightDuplication: height growth bounds
-
-The torsion statement for curve 3936b1 is not present and remains uncertified.
+Modules:
+- SexticJacobian
+- IncidenceDimension
+- HeightDuplication
+- Curve3936b1TrivialTorsion (torsion formalization present; certification awaits green CI)
 -/
