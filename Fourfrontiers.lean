@@ -6,14 +6,12 @@ Authors: Benjamin Stanley Frohman
 import Fourfrontiers.SexticJacobian
 import Fourfrontiers.IncidenceDimension
 import Fourfrontiers.HeightDuplication
-import Fourfrontiers.Curve3936b1TrivialTorsion
+import Fourfrontiers.BoundedPrimeCertificate
+import Fourfrontiers.BirationalTailBoundary
 
 /-!
 # Four Frontiers Boundary Markers
 
-Modules:
-- SexticJacobian
-- IncidenceDimension
-- HeightDuplication
-- Curve3936b1TrivialTorsion (torsion formalization present; certification awaits green CI)
+Modules present. Torsion formalization awaits green CI.
+Open tails remain open.
 -/
